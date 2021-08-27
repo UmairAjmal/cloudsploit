@@ -872,6 +872,8 @@ module.exports = {
 
         'actiontrailGlobalExportLogs'   : require(__dirname + '/plugins/alibaba/actiontrail/actiontrailGlobalExportLogs.js'),
 
-        'networkPolicyEnabled'          : require(__dirname + '/plugins/alibaba/ack/networkPolicyEnabled.js')
+        'networkPolicyEnabled'          : require(__dirname + '/plugins/alibaba/ack/networkPolicyEnabled.js'),
+        
+        'certificateExpiry'             : require(__dirname + '/plugins/alibaba/cas/certificateExpiry.js')
     }
 };

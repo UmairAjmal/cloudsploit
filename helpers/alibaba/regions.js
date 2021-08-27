@@ -38,5 +38,6 @@ module.exports = {
     oss: ['cn-hangzhou'],
     kms: regions,
     actiontrail: regions,
-    ack: ['cn-hangzhou']
+    ack: ['cn-hangzhou'],
+    cas: ['ap-southeast-2', 'ap-northeast-1', 'ap-south-1', 'eu-central-1', 'me-east-1']
 };

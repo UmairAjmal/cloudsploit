@@ -29,7 +29,8 @@ var regionEndpointMap = {
     kms: regions['kms'],
     rds: ['cn-zhangjiakou', 'cn-huhehaote', 'cn-chengdu', 'ap-southeast-2', 'ap-southeast-3', 'ap-southeast-5',
         'ap-northeast-1', 'ap-south-1', 'eu-central-1', 'eu-west-1', 'me-east-1'],
-    actiontrail: regions['actiontrail']
+    actiontrail: regions['actiontrail'],
+    cas: ['ap-southeast-2', 'ap-northeast-1', 'ap-south-1', 'eu-central-1', 'me-east-1']
 };
 
 var globalServices = [
@@ -143,6 +144,14 @@ var calls = {
         describeClustersV1: {
             override: true
         } 
+    },
+    CAS: {
+        DescribeUserCertificateList: {
+            override: true,
+            property: 'DescribeUserCertificateListResponse',
+            subProperty: 'CertificateList',
+            apiVersion: '2018-07-13',
+        }
     }
 };
 
@@ -315,7 +324,7 @@ var collect = function(AlibabaConfig, settings, callback) {
                 let LocalAlibabaConfig = JSON.parse(JSON.stringify(AlibabaConfig));
 
                 if (callObj.override) {
-                    collectors[serviceLower][callKey](LocalAlibabaConfig, collection, region, function() {
+                    collectors[serviceLower][callKey](LocalAlibabaConfig, collection, region, regionEndpointMap[serviceLower], function() {
                         if (callObj.rateLimit) {
                             setTimeout(function() {
                                 regionCb();

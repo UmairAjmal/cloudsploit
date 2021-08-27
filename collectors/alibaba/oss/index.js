@@ -1,7 +1,7 @@
 var async = require('async');
 const OSS = require('ali-oss');
 
-module.exports = function(callKey, AlibabaConfig, collection, region, callback) {
+module.exports = function(callKey, AlibabaConfig, collection, region, regionEndpointMap, callback) {
     async.eachLimit(collection.oss.listBuckets[region].data, 10, function(bucket, bcb){
         var localAlibabaConfig = JSON.parse(JSON.stringify(AlibabaConfig));
         if (bucket.region) localAlibabaConfig['region'] = bucket.region;

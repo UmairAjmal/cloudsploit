@@ -77,6 +77,7 @@ parser.add_argument('--cloud', {
 });
 
 let settings = parser.parse_args();
+settings.config = 'D:\\Freelancer\\cloudsploit\\config.js'
 let cloudConfig = {};
 
 // Now execute the scans using the defined configuration information.
