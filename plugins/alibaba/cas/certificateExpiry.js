@@ -18,6 +18,7 @@ module.exports = {
         for (const region of regions.cas) {
             const certificates =  helpers.addSource(cache, source,
                 ['cas', 'DescribeUserCertificateList', region]);
+
             if(!certificates) continue;
 
             if (certificates.err || !certificates.data) {
@@ -28,14 +29,14 @@ module.exports = {
             }
 
             if (!certificates.data.length){
-                helpers.addResult(results, 0, 'No certificates found', region);
+                helpers.addResult(results, 0, 'No certificate found', region);
                 continue;
             }
 
             for (const certificate of certificates.data) {
-                console.log(certificate);
                 const status = (certificate && certificate.expired) ? 2: 0;
-                helpers.addResult(results, status, `Certificate: ${certificate.name} is ${status ==2? 'expired': 'not expired'}`);
+                helpers.addResult(results, status,
+                    `Certificate: ${certificate.name} is ${status ==2 ? 'expired': 'not expired'}`, region);
             }
         }
         callback(null, results, source);

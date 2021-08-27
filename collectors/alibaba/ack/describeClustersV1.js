@@ -10,7 +10,7 @@ var headers = {
 var requestOption = {};
 var pageNumber = 1;
 
-module.exports = function(AlibabaConfig, collection, region, callback) {
+module.exports = function(AlibabaConfig, collection, region, regionEndpointMap, callback) {
     let localConfig = {...AlibabaConfig};
     localConfig['endpoint'] = `https://cs.${region}.aliyuncs.com`;
     localConfig['apiVersion'] = apiVersion;
